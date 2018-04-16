@@ -4,8 +4,8 @@
 	<merge from="root/AndroidManifest.xml.ftl"
              to="${escapeXmlAttribute(manifestOut)}/AndroidManifest.xml" />
 
-     	 <dependency mavenUrl="com.squareup.okhttp3:okhttp:3.9.1" />
-    	 <dependency mavenUrl="com.squareup.okhttp3:logging-interceptor:3.9.1" />
+     	 <dependency mavenUrl="com.squareup.okhttp3:okhttp:3.10.0" />
+    	 <dependency mavenUrl="com.squareup.okhttp3:logging-interceptor:3.10.0" />
     	 <dependency mavenUrl="com.android.support:support-annotations:27.0.2" />
 
 	<instantiate 

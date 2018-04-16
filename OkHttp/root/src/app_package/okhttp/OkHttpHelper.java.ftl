@@ -34,8 +34,8 @@ public class OkHttpHelper {
 
     /**
      * build.gradle dependencies
-     * compile 'com.squareup.okhttp3:okhttp:3.9.1'
-     * compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+     * compile 'com.squareup.okhttp3:okhttp:3.10.0'
+     * compile 'com.squareup.okhttp3:logging-interceptor:3.10.0'
      */
 
     private static final ThreadLocal<String> TAG = new ThreadLocal<String>() {
