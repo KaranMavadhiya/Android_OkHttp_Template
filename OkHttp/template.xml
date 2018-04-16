@@ -1,0 +1,12 @@
+<template 
+	format="5"
+        revision="3"
+        name="OkHttp"
+        description="Creates a helper classes for OkHttp library">
+ 
+    <category value="Other"/>
+ 
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+ 
+</template>
