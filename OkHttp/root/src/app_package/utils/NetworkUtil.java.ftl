@@ -29,4 +29,14 @@ public class NetworkUtil {
         }
         return TYPE_NOT_CONNECTED;
     }
+
+    /**
+     * @param context Application Context
+     * @return boolean
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
+    }
 }

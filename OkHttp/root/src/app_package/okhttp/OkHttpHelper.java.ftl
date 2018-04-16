@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import ${packageName}.utils.LogUtil;
+import ${packageName}.utils.NetworkUtil;
 import ${packageName}.utils.WSConstants;
 import ${packageName}.utils.WSResponse;
 
@@ -57,15 +58,6 @@ public class OkHttpHelper {
     public OkHttpHelper() {
     }
 
-    /**
-     * @param context Application Context
-     * @return boolean
-     */
-    private static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-        return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
-    }
 
     /**
      * @param context        Application Context
@@ -74,7 +66,7 @@ public class OkHttpHelper {
      * @param okHttpCallback Web service callback
      */
     public static void callHttpAsyncPost(Context context, String url, JSONObject json, OkHttpCallback okHttpCallback) {
-        if (!isNetworkAvailable(context))
+        if (!NetworkUtil.isNetworkAvailable(context))
             okHttpCallback.onNetworkFailure(WSConstants.error_network, WSConstants.network_error_message);
         else
             callHttpAsyncPost(context, url, json.toString(), okHttpCallback);
@@ -87,7 +79,7 @@ public class OkHttpHelper {
      * @param okHttpCallback Web service callback
      */
     public static void callHttpAsyncPost(Context context, String url, JSONArray json, OkHttpCallback okHttpCallback) {
-        if (!isNetworkAvailable(context))
+        if (!NetworkUtil.isNetworkAvailable(context))
             okHttpCallback.onNetworkFailure(WSConstants.error_network, WSConstants.network_error_message);
         else
             callHttpAsyncPost(context, url, json.toString(), okHttpCallback);
@@ -100,7 +92,7 @@ public class OkHttpHelper {
      * @return WSResponse
      */
     public static WSResponse callHttpSyncPost(Context context, String url, JSONObject json) throws IOException {
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             WSResponse wsResponse = new WSResponse();
             wsResponse.setStatusCode(WSConstants.error_network);
             wsResponse.setMessage(WSConstants.network_error_message);
@@ -117,7 +109,7 @@ public class OkHttpHelper {
      * @return WSResponse
      */
     public static WSResponse callHttpSyncPost(Context context, String url, JSONArray json) throws IOException {
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             WSResponse wsResponse = new WSResponse();
             wsResponse.setStatusCode(WSConstants.error_network);
             wsResponse.setMessage(WSConstants.network_error_message);
@@ -231,7 +223,7 @@ public class OkHttpHelper {
      * @param okHttpCallback Web service callback
      */
     public static void callHttpAsyncPost(Context context, String url, RequestBody requestBody, final OkHttpCallback okHttpCallback) {
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             okHttpCallback.onNetworkFailure(WSConstants.error_network, WSConstants.network_error_message);
             return;
         }
@@ -285,7 +277,7 @@ public class OkHttpHelper {
      * @param okHttpCallback Web service callback
      */
     public static void callHttpAsyncMultiPart(final Context context, final String url, final RequestBody requestBody, final OkHttpCallback okHttpCallback) {
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             okHttpCallback.onNetworkFailure(WSConstants.error_network, WSConstants.network_error_message);
             return;
         }
@@ -342,7 +334,7 @@ public class OkHttpHelper {
      * @param okHttpCallback Web service callback
      */
     public static void callHttpAsyncGet(final Context context, final String url, final OkHttpCallback okHttpCallback) {
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             okHttpCallback.onNetworkFailure(WSConstants.error_network, WSConstants.network_error_message);
             return;
         }
@@ -395,7 +387,7 @@ public class OkHttpHelper {
     public static WSResponse callHttpSyncPost(Context context, String url, RequestBody requestBody) throws IOException {
         WSResponse wsResponse = new WSResponse();
 
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             wsResponse.setStatusCode(WSConstants.error_network);
             wsResponse.setMessage(WSConstants.network_error_message);
             return wsResponse;
@@ -453,7 +445,7 @@ public class OkHttpHelper {
     public static WSResponse callHttpSyncMultiPart(final Context context, final String url, final RequestBody requestBody) throws IOException {
         WSResponse wsResponse = new WSResponse();
 
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             wsResponse.setStatusCode(WSConstants.error_network);
             wsResponse.setMessage(WSConstants.network_error_message);
             return wsResponse;
@@ -514,7 +506,7 @@ public class OkHttpHelper {
     public static WSResponse callHttpSyncGet(final Context context, final String url) throws IOException {
         WSResponse wsResponse = new WSResponse();
 
-        if (!isNetworkAvailable(context)) {
+        if (!NetworkUtil.isNetworkAvailable(context)) {
             wsResponse.setStatusCode(WSConstants.error_network);
             wsResponse.setMessage(WSConstants.network_error_message);
             return wsResponse;
